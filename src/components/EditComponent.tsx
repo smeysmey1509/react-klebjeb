@@ -1,34 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import { Avatar } from "ui-avatar-component";
-import { ProfileCard } from "../stories/ProfileCard";
+import { Avatar } from "../stories/Avatar";
 import FormControlComponent from "./FormControlComponent";
 
 const EditComponent = () => {
-  const [avatarSettings, setAvatarSettings] = useState({});
+  const [avatar, setAvatar] = useState({
+    alt: "",
+    fallback: "",
+    object: "cover",
+    shape: "circle",
+    size: 210,
+    src: "",
+  });
 
   useEffect(() => {
-    const savedSettings = localStorage.getItem("avatarSettings");
+    const savedSettings = localStorage.getItem("avatar");
     if (savedSettings) {
-      setAvatarSettings(JSON.parse(savedSettings));
+      setAvatar(JSON.parse(savedSettings));
     }
   }, []);
 
   const handleSave = (e) => {
     e.preventDefault();
-    localStorage.setItem("avatarSettings", JSON.stringify(avatarSettings));
+    localStorage.setItem("avatar", JSON.stringify(avatar));
   };
 
   const handleChange = (field) => (value) => {
-    setAvatarSettings((prev) => ({ ...prev, [field]: value }));
+    setAvatar((prev) => ({ ...prev, [field]: value }));
   };
 
   const fields = [
-    { type: "text", label: "description", name: "description" },
-    { type: "text", label: "imageUrl", name: "imageUrl" },
-    { type: "text", label: "name", name: "name" },
-    { type: "text", label: "title", name: "title" },
-    { type: "number", label: "age", name: "age" },
+    { type: "text", label: "Src", name: "src" },
+    { type: "text", label: "Alt Text", name: "alt" },
+    { type: "number", label: "Size", name: "size" },
+    {
+      type: "radio",
+      label: "Shape",
+      name: "shape",
+      options: [
+        { value: "circle", label: "Circle" },
+        { value: "square", label: "Square" },
+      ],
+    },
+    { type: "text", label: "Fallback", name: "fallback" },
+    { type: "text", label: "Object Fit", name: "object" },
   ];
 
   return (
@@ -51,12 +66,13 @@ const EditComponent = () => {
           flexDirection: "column",
         }}
       >
-        <ProfileCard
-          description="A passionate developer who loves coding and coffee."
-          imageUrl="https://via.placeholder.com/100"
-          name="John Doe"
-          title="Backend Developer"
-          age={10}
+        <Avatar
+          alt={avatar.alt}
+          fallback={avatar.fallback}
+          shape={avatar.shape}
+          size={avatar.size}
+          src={avatar.src}
+          sx={{ "& img": { objectFit: avatar.object } }}
         />
       </Box>
       <Box
@@ -72,11 +88,11 @@ const EditComponent = () => {
         }}
       >
         <Box component="h2" sx={{ color: "black", fontSize: "18px" }}>
-          Edit Avatar Attributes
+          Edit Attributes
         </Box>
         <FormControlComponent
           fields={fields}
-          values={avatarSettings}
+          values={avatar}
           setValues={(field, value) => handleChange(field)(value)}
           handleSave={handleSave}
         />

@@ -6,10 +6,9 @@ interface AvatarProps {
   size?: number;
   shape?: "circle" | "square";
   fallback?: string;
-  objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
 }
 
-const Avatar: React.FC<AvatarProps> = ({
+export const Avatar: React.FC<AvatarProps> = ({
   src = "",
   alt = "Avatar",
   size = 50,
