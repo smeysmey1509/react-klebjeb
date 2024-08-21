@@ -1,49 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { Avatar } from "../stories/Avatar";
+import { ProfileCard } from "../stories/ProfileCard";
 import FormControlComponent from "./FormControlComponent";
 
 const EditComponent = () => {
-  const [avatar, setAvatar] = useState({
-    alt: "",
-    fallback: "",
-    object: "cover",
-    shape: "circle",
-    size: 210,
-    src: "",
+  const [profileCard, setProfileCard] = useState({
+    age: "",
+    description: "",
+    imageUrl: "",
+    name: "circle",
+    title: 210,
+    status: false,
+    posts: 13,
+    followers: 164,
+    following: 6,
   });
 
   useEffect(() => {
-    const savedSettings = localStorage.getItem("avatar");
+    const savedSettings = localStorage.getItem("profileCard");
     if (savedSettings) {
-      setAvatar(JSON.parse(savedSettings));
+      setProfileCard(JSON.parse(savedSettings));
     }
   }, []);
 
   const handleSave = (e) => {
     e.preventDefault();
-    localStorage.setItem("avatar", JSON.stringify(avatar));
+    localStorage.setItem("profileCard", JSON.stringify(profileCard));
   };
 
   const handleChange = (field) => (value) => {
-    setAvatar((prev) => ({ ...prev, [field]: value }));
+    setProfileCard((prev) => ({ ...prev, [field]: value }));
   };
 
   const fields = [
-    { type: "text", label: "Src", name: "src" },
-    { type: "text", label: "Alt Text", name: "alt" },
-    { type: "number", label: "Size", name: "size" },
-    {
-      type: "radio",
-      label: "Shape",
-      name: "shape",
-      options: [
-        { value: "circle", label: "Circle" },
-        { value: "square", label: "Square" },
-      ],
-    },
-    { type: "text", label: "Fallback", name: "fallback" },
-    { type: "text", label: "Object Fit", name: "object" },
+    { type: "number", label: "Age", name: "age" },
+    { type: "text", label: "Description", name: "description" },
+    { type: "text", label: "Image Url", name: "imageUrl" },
+    { type: "text", label: "Name", name: "name" },
+    { type: "switch", label: "Status", name: "status" },
+    { type: "text", label: "Title", name: "title" },
+    { type: "number", label: "Posts", name: "posts" },
+    { type: "number", label: "Followers", name: "followers" },
+    { type: "number", label: "Following", name: "following" },
   ];
 
   return (
@@ -66,13 +65,16 @@ const EditComponent = () => {
           flexDirection: "column",
         }}
       >
-        <Avatar
-          alt={avatar.alt}
-          fallback={avatar.fallback}
-          shape={avatar.shape}
-          size={avatar.size}
-          src={avatar.src}
-          sx={{ "& img": { objectFit: avatar.object } }}
+        <ProfileCard
+          age={profileCard.age}
+          description={profileCard.description}
+          imageUrl={profileCard.imageUrl}
+          name={profileCard.name}
+          status={profileCard.status}
+          title={profileCard.title}
+          followers={profileCard.followers}
+          following={profileCard.following}
+          posts={profileCard.posts}
         />
       </Box>
       <Box
@@ -92,7 +94,7 @@ const EditComponent = () => {
         </Box>
         <FormControlComponent
           fields={fields}
-          values={avatar}
+          values={profileCard}
           setValues={(field, value) => handleChange(field)(value)}
           handleSave={handleSave}
         />

@@ -9,10 +9,11 @@ export default {
   argTypes: {
     src: { control: "text" },
     alt: { control: "text" },
-    size: { control: { type: "number", min: 50, max: 200 } }, // Corrected range
+    size: { control: { type: "number", min: 50, max: 200 } },
     shape: { control: { type: "radio", options: ["circle", "square"] } },
     fallback: { control: "text" },
     object: { control: "text" },
+    status: { control: "boolean" },
   },
 } as Meta;
 

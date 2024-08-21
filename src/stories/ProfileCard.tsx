@@ -5,24 +5,50 @@ interface ProfileCardProps {
   name: string;
   title: string;
   imageUrl: string;
-  description: string;
-  age: number;
+  posts: number;
+  followers: number;
+  following: number;
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({
   name,
   title,
   imageUrl,
-  description,
-  age,
+  posts,
+  followers,
+  following,
 }) => {
   return (
     <div className="profile-card">
-      <img src={imageUrl} alt={`${name}'s profile picture`} />
-      <h2>{name}</h2>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <span>{age}</span>
+      <div className="profile-card-header">
+        <img
+          src={imageUrl}
+          alt={`${name}'s profile picture`}
+          className="profile-card-image"
+        />
+      </div>
+      <div className="profile-card-body">
+        <h2>{name}</h2>
+        <h3>{title}</h3>
+        <div className="profile-card-stats">
+          <div>
+            <span className="stat-number">{posts}</span>
+            <span className="stat-label">Posts</span>
+          </div>
+          <div>
+            <span className="stat-number">{followers}k</span>
+            <span className="stat-label">Followers</span>
+          </div>
+          <div>
+            <span className="stat-number">{following}</span>
+            <span className="stat-label">Following</span>
+          </div>
+        </div>
+      </div>
+      <div className="profile-card-footer">
+        <button className="btn follow-btn">Follow</button>
+        <button className="btn message-btn">Message</button>
+      </div>
     </div>
   );
 };

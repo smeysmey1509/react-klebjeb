@@ -16,6 +16,10 @@ export const Default = {
     imageUrl: "https://via.placeholder.com/100",
     description: "A passionate developer who loves coding and coffee.",
     age: 14,
+    status: true,
+    posts: 13,
+    followers: 154,
+    following: 3,
   },
   render: (args: ProfileCardProps) => <ProfileCard {...args} />,
 };
@@ -26,9 +30,13 @@ export const Mey = {
     title: "Frontend Developer",
 
     imageUrl:
-      "https://api.duniagames.co.id/api/content/upload/file/6566039981677832023.jpg",
+      "https://cdn.oneesports.id/cdn-data/sites/2/2024/01/404190197_741995521203885_4533792470800801052_n.jpg",
     description: "A passionate developer who loves coding and coffee.",
     age: 10,
+    status: true,
+    posts: 13,
+    followers: 154,
+    following: 3,
   },
   render: (args: ProfileCardProps) => <ProfileCard {...args} />,
 };

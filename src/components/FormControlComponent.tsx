@@ -9,6 +9,9 @@ import {
   Radio,
   Box,
   Button,
+  Checkbox,
+  FormGroup,
+  Switch,
 } from "@mui/material";
 
 const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
@@ -62,6 +65,20 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
               </RadioGroup>
             </FormControl>
           );
+        case "switch":
+          return (
+            <FormControlLabel
+              key={index}
+              control={
+                <Switch
+                  checked={values[field.name]}
+                  onChange={(e) => setValues(field.name, e.target.checked)}
+                  color="primary"
+                />
+              }
+              label={field.label}
+            />
+          );
         default:
           return null;
       }
@@ -84,7 +101,7 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
 FormControlComponent.propTypes = {
   fields: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(["text", "number", "radio"]).isRequired,
+      type: PropTypes.oneOf(["text", "number", "radio", "boolean"]).isRequired,
       label: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       options: PropTypes.arrayOf(

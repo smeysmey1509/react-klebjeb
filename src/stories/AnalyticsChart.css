@@ -1,0 +1,23 @@
+.chart-container {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #273c55;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+  background-color: #273c55;
+}
