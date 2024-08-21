@@ -1,68 +1,35 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  TextField,
-  Button,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { Avatar } from "ui-avatar-component";
+import { ProfileCard } from "../stories/ProfileCard";
+import FormControlComponent from "./FormControlComponent";
 
 const EditComponent = () => {
-  const [avatarSrc, setAvatarSrc] = useState("");
-  const [avatarAlt, setAvatarAlt] = useState("");
-  const [avatarSize, setAvatarSize] = useState(350);
-  const [avatarShape, setAvatarShape] = useState("circle");
-  const [avatarFallback, setAvatarFallback] = useState("A");
-  const [avatarObjectfit, setAvatarObjectfit] = useState("contain");
+  const [avatarSettings, setAvatarSettings] = useState({});
 
   useEffect(() => {
-    // Load data from local storage
     const savedSettings = localStorage.getItem("avatarSettings");
     if (savedSettings) {
-      const settings = JSON.parse(savedSettings);
-      setAvatarSrc(settings.avatarSrc || "");
-      setAvatarAlt(settings.avatarAlt || "");
-      setAvatarSize(settings.avatarSize || 350);
-      setAvatarShape(settings.avatarShape || "circle");
-      setAvatarFallback(settings.avatarFallback || "A");
-      setAvatarObjectfit(settings.avatarObjectfit || "contain");
+      setAvatarSettings(JSON.parse(savedSettings));
     }
   }, []);
 
   const handleSave = (e) => {
     e.preventDefault();
-
-    // Save the form data to local storage
-    localStorage.setItem(
-      "avatarSettings",
-      JSON.stringify({
-        avatarSrc,
-        avatarAlt,
-        avatarSize,
-        avatarShape,
-        avatarFallback,
-        avatarObjectfit,
-      })
-    );
-
-    // Log the state to verify that it captures the latest changes
-    console.log({
-      avatarSrc,
-      avatarAlt,
-      avatarSize,
-      avatarShape,
-      avatarFallback,
-      avatarObjectfit,
-    });
+    localStorage.setItem("avatarSettings", JSON.stringify(avatarSettings));
   };
 
-  const handleExport = () => {
-    alert(123);
+  const handleChange = (field) => (value) => {
+    setAvatarSettings((prev) => ({ ...prev, [field]: value }));
   };
+
+  const fields = [
+    { type: "text", label: "description", name: "description" },
+    { type: "text", label: "imageUrl", name: "imageUrl" },
+    { type: "text", label: "name", name: "name" },
+    { type: "text", label: "title", name: "title" },
+    { type: "number", label: "age", name: "age" },
+  ];
 
   return (
     <Box
@@ -84,17 +51,12 @@ const EditComponent = () => {
           flexDirection: "column",
         }}
       >
-        <Avatar
-          src={avatarSrc}
-          alt={avatarAlt}
-          size={avatarSize}
-          shape={avatarShape}
-          fallback={avatarFallback}
-          sx={{
-            "& img": {
-              objectFit: avatarObjectfit,
-            },
-          }}
+        <ProfileCard
+          description="A passionate developer who loves coding and coffee."
+          imageUrl="https://via.placeholder.com/100"
+          name="John Doe"
+          title="Backend Developer"
+          age={10}
         />
       </Box>
       <Box
@@ -109,108 +71,15 @@ const EditComponent = () => {
             "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
         }}
       >
-        <Box
-          component="h2"
-          sx={{
-            color: "black",
-            fontSize: "18px",
-          }}
-        >
+        <Box component="h2" sx={{ color: "black", fontSize: "18px" }}>
           Edit Avatar Attributes
         </Box>
-        <form onSubmit={handleSave}>
-          <TextField
-            label="Image URL"
-            variant="outlined"
-            fullWidth
-            value={avatarSrc}
-            onChange={(e) => setAvatarSrc(e.target.value)}
-            margin="normal"
-          />
-          <TextField
-            label="Alt Text"
-            variant="outlined"
-            fullWidth
-            value={avatarAlt}
-            onChange={(e) => setAvatarAlt(e.target.value)}
-            margin="normal"
-          />
-          <TextField
-            label="Size"
-            variant="outlined"
-            type="number"
-            fullWidth
-            value={avatarSize}
-            onChange={(e) => setAvatarSize(Number(e.target.value))}
-            margin="normal"
-          />
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Shape</FormLabel>
-            <RadioGroup
-              aria-label="shape"
-              name="shape"
-              value={avatarShape}
-              onChange={(e) => setAvatarShape(e.target.value)}
-            >
-              <FormControlLabel
-                value="circle"
-                control={<Radio />}
-                label="Circle"
-                sx={{
-                  color: "black",
-                }}
-              />
-              <FormControlLabel
-                value="square"
-                control={<Radio />}
-                label="Square"
-                sx={{
-                  color: "black",
-                }}
-              />
-            </RadioGroup>
-          </FormControl>
-          <TextField
-            label="Fallback"
-            variant="outlined"
-            fullWidth
-            value={avatarFallback}
-            onChange={(e) => setAvatarFallback(e.target.value)}
-            margin="normal"
-          />
-          {/* <TextField
-            label="Object-fit"
-            variant="outlined"
-            fullWidth
-            value={avatarObjectfit}
-            onChange={(e) => setAvatarObjectfit(e.target.value)}
-            margin="normal"
-          /> */}
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Button type="submit" variant="contained" color="primary">
-              Save
-            </Button>
-          </Box>
-        </form>
-        <Button
-          sx={{
-            width: "fit-content",
-            marginTop: "10px",
-          }}
-          type="submit"
-          variant="contained"
-          color="warning"
-          onClick={handleExport}
-        >
-          Import
-        </Button>
+        <FormControlComponent
+          fields={fields}
+          values={avatarSettings}
+          setValues={(field, value) => handleChange(field)(value)}
+          handleSave={handleSave}
+        />
       </Box>
     </Box>
   );
