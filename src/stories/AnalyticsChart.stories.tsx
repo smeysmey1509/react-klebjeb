@@ -5,6 +5,7 @@ import "./AnalyticsChart.css";
 
 const meta: Meta = {
   title: "Components/AnalyticsChart",
+  tags: ["autodocs"],
   component: AnalyticsChart,
   parameters: {
     layout: "centered",
@@ -53,6 +54,11 @@ CustomData.args = {
         label: "Custom Dataset 2",
         data: [50, 40, 30, 20, 10, 20, 30],
         color: "#1b5e20",
+      },
+      {
+        label: "Custom Dataset 3",
+        data: [25, 35, 30, 20, 30, 40, 45],
+        color: "red",
       },
     ],
   },

@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { Avatar } from "../stories/Avatar";
-import { ProfileCard } from "../stories/ProfileCard";
 import FormControlComponent from "./FormControlComponent";
+import ProfileCard from "../stories/ProfileCard";
 
 const EditComponent = () => {
   const [profileCard, setProfileCard] = useState({
-    age: "",
-    description: "",
+    followers: 1,
+    following: 5,
     imageUrl: "",
-    name: "circle",
-    title: 210,
-    status: false,
+    name: "",
     posts: 13,
-    followers: 164,
-    following: 6,
+    title: "",
   });
 
   useEffect(() => {
@@ -24,25 +21,22 @@ const EditComponent = () => {
     }
   }, []);
 
-  const handleSave = (e) => {
+  const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     localStorage.setItem("profileCard", JSON.stringify(profileCard));
   };
 
-  const handleChange = (field) => (value) => {
+  const handleChange = (field: string) => (value: any) => {
     setProfileCard((prev) => ({ ...prev, [field]: value }));
   };
 
   const fields = [
-    { type: "number", label: "Age", name: "age" },
-    { type: "text", label: "Description", name: "description" },
-    { type: "text", label: "Image Url", name: "imageUrl" },
-    { type: "text", label: "Name", name: "name" },
-    { type: "switch", label: "Status", name: "status" },
-    { type: "text", label: "Title", name: "title" },
-    { type: "number", label: "Posts", name: "posts" },
     { type: "number", label: "Followers", name: "followers" },
     { type: "number", label: "Following", name: "following" },
+    { type: "text", label: "ImageUrl", name: "imageUrl" },
+    { type: "text", label: "Name", name: "name" },
+    { type: "number", label: "Posts", name: "posts" },
+    { type: "text", label: "Title", name: "title" },
   ];
 
   return (
@@ -66,15 +60,12 @@ const EditComponent = () => {
         }}
       >
         <ProfileCard
-          age={profileCard.age}
-          description={profileCard.description}
-          imageUrl={profileCard.imageUrl}
-          name={profileCard.name}
-          status={profileCard.status}
-          title={profileCard.title}
           followers={profileCard.followers}
           following={profileCard.following}
+          imageUrl={profileCard.imageUrl}
+          name={profileCard.name}
           posts={profileCard.posts}
+          title={profileCard.title}
         />
       </Box>
       <Box

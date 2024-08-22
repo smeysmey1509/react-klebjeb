@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProfileCard.css";
 
-interface ProfileCardProps {
+export interface ProfileCardProps {
   name: string;
   title: string;
   imageUrl: string;

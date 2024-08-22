@@ -12,6 +12,8 @@ import {
   Checkbox,
   FormGroup,
   Switch,
+  Select,
+  MenuItem,
 } from "@mui/material";
 
 const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
@@ -46,7 +48,9 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
         case "radio":
           return (
             <FormControl key={index} component="fieldset">
-              <FormLabel component="legend">{field.label}</FormLabel>
+              <FormLabel component="legend" sx={{ color: "black" }}>
+                {field.label}
+              </FormLabel>
               <RadioGroup
                 aria-label={field.name}
                 name={field.name}
@@ -79,6 +83,66 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
               label={field.label}
             />
           );
+        case "checkbox":
+          return (
+            <FormControlLabel
+              key={index}
+              control={
+                <Checkbox
+                  checked={values[field.name]}
+                  onChange={(e) => setValues(field.name, e.target.checked)}
+                  color="primary"
+                />
+              }
+              label={field.label}
+            />
+          );
+        case "select":
+          return (
+            <FormControl key={index} fullWidth margin="normal">
+              <FormLabel component="legend" sx={{ color: "black" }}>
+                {field.label}
+              </FormLabel>
+              <Select
+                value={values[field.name]}
+                onChange={(e) => setValues(field.name, e.target.value)}
+              >
+                {field.options.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          );
+        case "date":
+          return (
+            <TextField
+              key={index}
+              label={field.label}
+              type="date"
+              variant="outlined"
+              fullWidth
+              value={values[field.name]}
+              onChange={(e) => setValues(field.name, e.target.value)}
+              InputLabelProps={{ shrink: true }}
+              margin="normal"
+            />
+          );
+        case "textarea":
+          return (
+            <TextField
+              key={index}
+              label={field.label}
+              variant="outlined"
+              multiline
+              rows={4}
+              fullWidth
+              value={values[field.name]}
+              onChange={(e) => setValues(field.name, e.target.value)}
+              margin="normal"
+            />
+          );
         default:
           return null;
       }
@@ -101,7 +165,16 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
 FormControlComponent.propTypes = {
   fields: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(["text", "number", "radio", "boolean"]).isRequired,
+      type: PropTypes.oneOf([
+        "text",
+        "number",
+        "radio",
+        "switch",
+        "checkbox",
+        "select",
+        "date",
+        "textarea",
+      ]).isRequired,
       label: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       options: PropTypes.arrayOf(
