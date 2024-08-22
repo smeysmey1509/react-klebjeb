@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, TextareaAutosize } from "@mui/material";
 import React from "react";
 import { Button } from "../stories/Button";
 
@@ -61,8 +61,19 @@ export const Feedback = () => {
         <h4>Not likely at all</h4>
         <h4>Extremely likely</h4>
       </Box>
-      <Box sx={{ width: "100%", height: "100%" }}>
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          "& h2": { fontSize: "16px", textAlign: "left" },
+        }}
+      >
         <h2>Tell us how we can approve</h2>
+        <TextareaAutosize
+          name="Solid"
+          placeholder="Type in here…"
+          //   variant="solid"
+        />
       </Box>
     </Box>
   );
