@@ -57,11 +57,12 @@ export const ProfileCard: ProfileCardStatic = ({
   );
 };
 
+// Static method to get default attributes
 ProfileCard.getDefaultAttributes = (): ProfileCardProps => ({
   name: "",
   title: "",
   imageUrl: "",
-  posts: 1,
+  posts: 0,
   followers: 1,
   following: 1,
 });

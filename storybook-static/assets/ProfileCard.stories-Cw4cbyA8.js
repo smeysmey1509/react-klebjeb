@@ -1,0 +1,11 @@
+import{j as s}from"./jsx-runtime-Cw0GR0a5.js";import"./index-CTjT7uj6.js";const a=({name:e,title:i,imageUrl:d,posts:c,followers:m,following:p})=>s.jsxs("div",{className:"profile-card",children:[s.jsx("div",{className:"profile-card-header",children:s.jsx("img",{src:d,alt:`${e}'s profile picture`,className:"profile-card-image"})}),s.jsxs("div",{className:"profile-card-body",children:[s.jsx("h2",{children:e}),s.jsx("h3",{children:i}),s.jsxs("div",{className:"profile-card-stats",children:[s.jsxs("div",{children:[s.jsx("span",{className:"stat-number",children:c}),s.jsx("span",{className:"stat-label",children:"Posts"})]}),s.jsxs("div",{children:[s.jsxs("span",{className:"stat-number",children:[m,"k"]}),s.jsx("span",{className:"stat-label",children:"Followers"})]}),s.jsxs("div",{children:[s.jsx("span",{className:"stat-number",children:p}),s.jsx("span",{className:"stat-label",children:"Following"})]})]})]}),s.jsxs("div",{className:"profile-card-footer",children:[s.jsx("button",{className:"btn follow-btn",children:"Follow"}),s.jsx("button",{className:"btn message-btn",children:"Message"})]})]});a.getDefaultAttributes=()=>({name:"",title:"",imageUrl:"",posts:0,followers:1,following:1});const n=a;a.__docgenInfo={description:"",methods:[{name:"getDefaultAttributes",docblock:null,modifiers:["static"],params:[],returns:{type:{name:"ProfileCardProps"}}}],displayName:"ProfileCard"};const j={title:"Components/ProfileCard",tags:["autodocs"],component:n},r={args:{name:"Sze",title:"Onic BA",imageUrl:"https://cdn.oneesports.id/cdn-data/sites/2/2024/01/404190197_741995521203885_4533792470800801052_n.jpg",posts:133,followers:154,following:3},render:e=>s.jsx(n,{...e})};var l,t,o;r.parameters={...r.parameters,docs:{...(l=r.parameters)==null?void 0:l.docs,source:{originalSource:`{
+  args: {
+    name: "Sze",
+    title: "Onic BA",
+    imageUrl: "https://cdn.oneesports.id/cdn-data/sites/2/2024/01/404190197_741995521203885_4533792470800801052_n.jpg",
+    posts: 133,
+    followers: 154,
+    following: 3
+  },
+  render: (args: ProfileCardProps) => <ProfileCard {...args} />
+}`,...(o=(t=r.parameters)==null?void 0:t.docs)==null?void 0:o.source}}};const x=["Default"];export{r as Default,x as __namedExportsOrder,j as default};

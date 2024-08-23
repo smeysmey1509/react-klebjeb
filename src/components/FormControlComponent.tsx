@@ -10,15 +10,14 @@ import {
   Box,
   Button,
   Checkbox,
-  FormGroup,
   Switch,
   Select,
   MenuItem,
 } from "@mui/material";
 
 const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
-  <form onSubmit={handleSave}>
-    {fields.map((field: any, index: any) => {
+  <form onSubmit={handleSave} style={{ padding: "10px" }}>
+    {fields.map((field, index) => {
       switch (field.type) {
         case "text":
           return (
@@ -30,6 +29,7 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
               value={values[field.name]}
               onChange={(e) => setValues(field.name, e.target.value)}
               margin="normal"
+              sx={{ mb: 2 }}
             />
           );
         case "number":
@@ -43,11 +43,12 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
               value={values[field.name]}
               onChange={(e) => setValues(field.name, Number(e.target.value))}
               margin="normal"
+              sx={{ mb: 2 }}
             />
           );
         case "radio":
           return (
-            <FormControl key={index} component="fieldset">
+            <FormControl key={index} component="fieldset" sx={{ mb: 2 }}>
               <FormLabel component="legend" sx={{ color: "black" }}>
                 {field.label}
               </FormLabel>
@@ -81,6 +82,7 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
                 />
               }
               label={field.label}
+              sx={{ mb: 2 }}
             />
           );
         case "checkbox":
@@ -95,17 +97,19 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
                 />
               }
               label={field.label}
+              sx={{ mb: 2 }}
             />
           );
         case "select":
           return (
-            <FormControl key={index} fullWidth margin="normal">
+            <FormControl key={index} fullWidth margin="normal" sx={{ mb: 2 }}>
               <FormLabel component="legend" sx={{ color: "black" }}>
                 {field.label}
               </FormLabel>
               <Select
                 value={values[field.name]}
                 onChange={(e) => setValues(field.name, e.target.value)}
+                sx={{ height: 56 }} // Match the height of other fields
               >
                 {field.options.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -127,6 +131,7 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
               onChange={(e) => setValues(field.name, e.target.value)}
               InputLabelProps={{ shrink: true }}
               margin="normal"
+              sx={{ mb: 2 }}
             />
           );
         case "textarea":
@@ -141,6 +146,7 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
               value={values[field.name]}
               onChange={(e) => setValues(field.name, e.target.value)}
               margin="normal"
+              sx={{ mb: 2 }}
             />
           );
         default:
@@ -151,11 +157,17 @@ const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
       sx={{
         width: "100%",
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         alignItems: "center",
+        mt: 2,
       }}
     >
-      <Button type="submit" variant="contained" color="primary">
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        sx={{ px: 3, py: 1.5 }}
+      >
         Save
       </Button>
     </Box>

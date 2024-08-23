@@ -53,9 +53,9 @@ export const Avatar: AvatarStatic = ({
 Avatar.getDefaultAttributes = (): AvatarProps => ({
   src: "",
   alt: "",
-  size: 50,
+  size: 250,
   shape: "circle",
-  fallback: "A",
+  fallback: "SZE",
   object: "cover",
 });
 

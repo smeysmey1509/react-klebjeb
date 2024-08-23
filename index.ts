@@ -1,2 +1,7 @@
-export { default as Avatar } from "./src/stories/Avatar";
-export { default as ProfileCard } from "./src/stories/ProfileCard.stories";
+import Avatar from "./src/stories/Avatar";
+import ProfileCard from "./src/stories/ProfileCard";
+import HelloWorld from "./src/components/HelloWorld";
+
+export default Avatar;
+export default ProfileCard;
+export default HelloWorld;

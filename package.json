@@ -1,7 +1,20 @@
 {
   "name": "ui-avatar-component",
-  "version": "1.0.1",
+  "private": false,
+  "version": "1.0.8",
+  "main": "index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -18,8 +31,7 @@
     "@storybook/html": "^8.2.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.3.0",
-    "ui-avatar-component": "^1.0.1"
+    "react-icons": "^5.3.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",

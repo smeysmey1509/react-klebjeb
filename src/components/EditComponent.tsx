@@ -34,7 +34,7 @@ const EditComponent = () => {
     <Box
       sx={{
         width: "100%",
-        height: "auto",
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -54,7 +54,7 @@ const EditComponent = () => {
       </Box>
       <Box
         sx={{
-          width: "20%",
+          width: "40%",
           height: "auto",
           color: "white",
           display: "flex",
@@ -64,7 +64,10 @@ const EditComponent = () => {
             "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
         }}
       >
-        <Box component="h2" sx={{ color: "black", fontSize: "18px" }}>
+        <Box
+          component="h2"
+          sx={{ color: "black", fontSize: "18px", padding: "10px" }}
+        >
           Edit Attributes
         </Box>
         <FormControlComponent

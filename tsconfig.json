@@ -9,5 +9,6 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["stories/**/*.ts", "stories/**/*.tsx", "index.ts"]
+  "include": ["stories/**/*.ts", "stories/**/*.tsx", "index.ts"],
+  "exclude": ["node_modules"]
 }
