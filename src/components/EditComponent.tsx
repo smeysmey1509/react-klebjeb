@@ -1,43 +1,34 @@
+// EditComponent.tsx
+
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import { Avatar } from "../stories/Avatar";
+import Avatar, { AvatarProps } from "../stories/Avatar";
+import ProfileCard, { ProfileCardProps } from "../stories/ProfileCard";
 import FormControlComponent from "./FormControlComponent";
-import ProfileCard from "../stories/ProfileCard";
+import { generateFieldsFromAttributes } from "../utils/utils";
 
 const EditComponent = () => {
-  const [profileCard, setProfileCard] = useState({
-    followers: 1,
-    following: 5,
-    imageUrl: "",
-    name: "",
-    posts: 13,
-    title: "",
-  });
+  const [attributes, setAttributes] = useState<ProfileCardProps>(
+    ProfileCard.getDefaultAttributes()
+  );
 
   useEffect(() => {
     const savedSettings = localStorage.getItem("profileCard");
     if (savedSettings) {
-      setProfileCard(JSON.parse(savedSettings));
+      setAttributes(JSON.parse(savedSettings));
     }
   }, []);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem("profileCard", JSON.stringify(profileCard));
+    localStorage.setItem("profileCard", JSON.stringify(attributes));
   };
 
-  const handleChange = (field: string) => (value: any) => {
-    setProfileCard((prev) => ({ ...prev, [field]: value }));
+  const handleChange = (field: keyof AvatarProps) => (value: any) => {
+    setAttributes((prev) => ({ ...prev, [field]: value }));
   };
 
-  const fields = [
-    { type: "number", label: "Followers", name: "followers" },
-    { type: "number", label: "Following", name: "following" },
-    { type: "text", label: "ImageUrl", name: "imageUrl" },
-    { type: "text", label: "Name", name: "name" },
-    { type: "number", label: "Posts", name: "posts" },
-    { type: "text", label: "Title", name: "title" },
-  ];
+  const fields = generateFieldsFromAttributes(attributes);
 
   return (
     <Box
@@ -59,14 +50,7 @@ const EditComponent = () => {
           flexDirection: "column",
         }}
       >
-        <ProfileCard
-          followers={profileCard.followers}
-          following={profileCard.following}
-          imageUrl={profileCard.imageUrl}
-          name={profileCard.name}
-          posts={profileCard.posts}
-          title={profileCard.title}
-        />
+        <ProfileCard {...attributes} />
       </Box>
       <Box
         sx={{
@@ -85,8 +69,10 @@ const EditComponent = () => {
         </Box>
         <FormControlComponent
           fields={fields}
-          values={profileCard}
-          setValues={(field, value) => handleChange(field)(value)}
+          values={attributes}
+          setValues={(field, value) =>
+            handleChange(field as keyof ProfileCardProps)(value)
+          }
           handleSave={handleSave}
         />
       </Box>

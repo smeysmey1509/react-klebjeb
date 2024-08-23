@@ -18,7 +18,7 @@ import {
 
 const FormControlComponent = ({ fields, values, setValues, handleSave }) => (
   <form onSubmit={handleSave}>
-    {fields.map((field, index) => {
+    {fields.map((field: any, index: any) => {
       switch (field.type) {
         case "text":
           return (

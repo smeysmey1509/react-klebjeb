@@ -1,14 +1,19 @@
 import React from "react";
 
-interface AvatarProps {
+export interface AvatarProps {
   src?: string;
   alt?: string;
   size?: number;
   shape?: "circle" | "square";
   fallback?: string;
+  object?: string;
 }
 
-export const Avatar: React.FC<AvatarProps> = ({
+interface AvatarStatic extends React.FC<AvatarProps> {
+  getDefaultAttributes: () => AvatarProps;
+}
+
+export const Avatar: AvatarStatic = ({
   src = "",
   alt = "Avatar",
   size = 50,
@@ -43,5 +48,15 @@ export const Avatar: React.FC<AvatarProps> = ({
     </div>
   );
 };
+
+// Static method to get default attributes
+Avatar.getDefaultAttributes = (): AvatarProps => ({
+  src: "",
+  alt: "",
+  size: 50,
+  shape: "circle",
+  fallback: "A",
+  object: "cover",
+});
 
 export default Avatar;

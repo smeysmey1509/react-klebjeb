@@ -6,8 +6,8 @@ import Feedback from "./stories/Feedback";
 function App() {
   return (
     <>
-      {/* <EditComponent /> */}
-      <Feedback />
+      <EditComponent />
+      {/* <Feedback /> */}
     </>
   );
 }

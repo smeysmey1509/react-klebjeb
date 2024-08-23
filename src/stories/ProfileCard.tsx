@@ -10,7 +10,11 @@ export interface ProfileCardProps {
   following: number;
 }
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({
+interface ProfileCardStatic extends React.FC<ProfileCardProps> {
+  getDefaultAttributes: () => ProfileCardProps;
+}
+
+export const ProfileCard: ProfileCardStatic = ({
   name,
   title,
   imageUrl,
@@ -52,5 +56,14 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     </div>
   );
 };
+
+ProfileCard.getDefaultAttributes = (): ProfileCardProps => ({
+  name: "",
+  title: "",
+  imageUrl: "",
+  posts: 1,
+  followers: 1,
+  following: 1,
+});
 
 export default ProfileCard;
