@@ -2,13 +2,15 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "es5",
-    "module": "es6",
-    "jsx": "react",
+    "module": "ESNext",
+    "jsx": "react-jsx",
     "declaration": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["stories/**/*.ts", "stories/**/*.tsx", "index.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "stories"]
 }

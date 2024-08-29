@@ -50,7 +50,15 @@ const EditComponent = () => {
           flexDirection: "column",
         }}
       >
-        <ProfileCard {...attributes} />
+        {/* <ProfileCard {...attributes} /> */}
+        <ProfileCard
+          followers={154}
+          following={3}
+          imageUrl="https://cdn.oneesports.id/cdn-data/sites/2/2024/01/404190197_741995521203885_4533792470800801052_n.jpg"
+          name="Sze"
+          posts={133}
+          title="Onic BA"
+        />
       </Box>
       <Box
         sx={{
